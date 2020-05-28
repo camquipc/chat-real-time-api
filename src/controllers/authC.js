@@ -9,37 +9,21 @@ module.exports = {
 
 		//creamos el token
 
-		User.find({ email: req.body.email }).then(user => {
+		const {username} = req.body;
 
-			let token = service.Token(user);
+		User.find({ username: username }).then(user => {
 
-			res.status(200).json({ api_token: token });
+		   let token = service.Token(user);
 
-		}).catch(error => console.log(error));
+		   res.status(200).json({ 
+		   	"user":user,
+		   	"token": token 
+		   });
+			
 
-	},
+		}).catch( error => res.status(500).json(error));
 
-	singup(req, res) {
-
-		//registrar optener token
-		let user = new User(
-			{
-				name: {
-					first: req.body.name.first,
-
-					last: req.body.name.last
-				},
-
-				email: req.body.email,
-				password: req.body.password
-			}
-		);
-
-		user.save().then(user => {
-
-			res.status(201).json(user);
-
-		}).catch(error => console.log(error));
 	}
+	
 }
 

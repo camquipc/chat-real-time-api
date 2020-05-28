@@ -8,9 +8,11 @@ const config = require('../../config');
 const Usuario = new Schema(
   {
 
-    user: { type: String, index: { unique: true }, required: true },
+    username: { type: String, unique: true, required: true },
 
-    password: { type: String, required: true }
+    password: { type: String, required: true },
+
+    avatar: { type: String}
   },
   {
     timestamps: true

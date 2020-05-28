@@ -1,7 +1,7 @@
 const User = require('../models/usersM');
 
 module.exports = {
-    
+     var clients = io.engine.clientsCount;
     index(req, res) {
 
 
@@ -24,48 +24,29 @@ module.exports = {
     },
 
     store(req , res) {
+
+		const {username , password , avatar } = req.body;
+
     	
     	let user = new User(
     		{
-			  name : {
-			    first: req.body.name.first,
+				username: username,
 
-        		last: req.body.name.last
-			  },
-			    
-			  email : req.body.email,
-			    password :req.body.password
+				password:password,
+			
+				avatar: avatar 
 			}
     	);
-
     	user.save().then( user => {
 
-    		res.status(201).json( user);
+    		res.status(201).json(user);
 
-    	}).catch( error => console.log(error));
-    },
+    	}).catch( error => 
 
-    update(req , res) {
-
-    	User.findByIdAndUpdate( req.params.id, req.body ,(err, user) => {
-		   
-		    if (err) {
-
-		    	return res.status(500).json(err);
-		    }
-
-		    return res.status(200).json(user);
-		  }
-		);
-    },
-
-    delete(req , res){
-
-    	User.deleteOne({ _id: req.params.id }).then( user => {
-
-    		res.status(200).json(user);
-
-    	}).catch( error => console.log(error));
+            res.status(500).json({
+                "error": "error"
+            })
+        );
     }
 };
 
