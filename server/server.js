@@ -24,6 +24,7 @@ const db = require('../src/db/conexion');
 //const socket = require('./src/socketConect');
 
 const Chat = require('../src/models/chatsM');
+const User = require('../src/models/usersM');
 
 
 const { port, environment } = require('../config');
@@ -67,6 +68,10 @@ io.on("connection", async ( socket ) => {
 
 
    const messages = await Chat.find().sort({createdAt:-1}).populate('userId');
+
+   const users = await User.find({ online: true }, { username:1 , avatar:1, online:1 });
+    
+   io.emit('users_' , {users});
 
    if(messages.length > 0 ) {
      io.emit('messages_' , {messages});
