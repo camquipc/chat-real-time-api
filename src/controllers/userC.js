@@ -1,5 +1,7 @@
 const User = require('../models/usersM');
 
+const moment = require('moment');
+
 module.exports = {
      
     index(req, res) {
@@ -25,8 +27,9 @@ module.exports = {
 
     store(req , res) {
 
-		const {username , password , avatar } = req.body;
-
+		const {username , password } = req.body;
+       
+        const avatar = `http://gravatar.com/avatar/${moment().unix()}?d=identicon` || '' ;
     	
     	let user = new User(
     		{
