@@ -3,7 +3,7 @@
 const mongoose = require('mongoose');
 const { dbname, dbcone, dbhost } = require('../../config/');
 
-const db_con = mongoose.connect(`mongodb://fran:fran2020@ds131903.mlab.com:31903/realtime`,
+const db_con = mongoose.connect('mongodb://francisco:francisco1234@ds127982.mlab.com:27982/testchat',
     {
         useNewUrlParser: true,
         useUnifiedTopology: true
@@ -16,3 +16,4 @@ const db_con = mongoose.connect(`mongodb://fran:fran2020@ds131903.mlab.com:31903
 module.exports = db_con;
 
 //${dbcone}://${dbhost}/${dbname}
+
