@@ -52,7 +52,7 @@ module.exports = {
 
     update(req , res) {
 
-        User.findByIdAndUpdate( req.params.id, {online:req.body.online} ,(err, user) => {
+        User.findByIdAndUpdate( req.params.id, req.body ,(err, user) => {
            
             if (err) {
 
