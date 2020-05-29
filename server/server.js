@@ -25,6 +25,7 @@ const db = require('../src/db/conexion');
 
 const Chat = require('../src/models/chatsM');
 
+
 const { port, environment } = require('../config');
 
 
@@ -64,13 +65,20 @@ app.use("/api/", api);
 
 io.on("connection", async ( socket ) => {
 
+
    const messages = await Chat.find().sort({createdAt:-1}).populate('userId');
 
    if(messages.length > 0 ) {
      io.emit('messages_' , {messages});
+    
    } else {
-     io.emit('messages_' , {"messages": "welcome to chat, comment something"});
+     io.emit('messages_' , {messages});
    }
+
+
+   socket.on('disconnect', function(){
+        console.log('user disconnected');
+    });
 
 });
 

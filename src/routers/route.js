@@ -9,6 +9,7 @@ const auth = require("../auth");
 //USUARIO
 api.get("/users",auth.Auth , userCtrl.index);
 api.get("/user/:id",  auth.Auth , userCtrl.show);
+api.put("/user/:id" , userCtrl.update);
 
 
 //CHAT

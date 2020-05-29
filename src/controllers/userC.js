@@ -1,11 +1,11 @@
 const User = require('../models/usersM');
 
 module.exports = {
-     var clients = io.engine.clientsCount;
+     
     index(req, res) {
 
 
-    	User.find().then( users => {
+    	User.find({ online: true }).then( users => {
 
     		res.status(200).json( users);
 
@@ -46,6 +46,20 @@ module.exports = {
             res.status(500).json({
                 "error": "error"
             })
+        );
+    },
+
+    update(req , res) {
+
+        User.findByIdAndUpdate( req.params.id, {online:true} ,(err, user) => {
+           
+            if (err) {
+
+                return res.status(500).json(err);
+            }
+
+            return res.status(200).json(user);
+          }
         );
     }
 };

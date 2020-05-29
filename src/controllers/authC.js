@@ -16,8 +16,8 @@ module.exports = {
 		   let token = service.Token(user);
 
 		   res.status(200).json({ 
-		   	"user":user,
-		   	"token": token 
+		   	user,
+		   	token 
 		   });
 			
 

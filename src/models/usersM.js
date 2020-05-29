@@ -12,7 +12,9 @@ const Usuario = new Schema(
 
     password: { type: String, required: true },
 
-    avatar: { type: String}
+    avatar: { type: String},
+
+    online : { type: Boolean, default: false }
   },
   {
     timestamps: true

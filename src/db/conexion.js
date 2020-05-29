@@ -3,7 +3,7 @@
 const mongoose = require('mongoose');
 const { dbname, dbcone, dbhost } = require('../../config/');
 
-const db_con = mongoose.connect(`${dbcone}://${dbhost}/${dbname}`,
+const db_con = mongoose.connect(`mongodb://mario:mario2020@ds131903.mlab.com:31903/realtime`,
     {
         useNewUrlParser: true,
         useUnifiedTopology: true
@@ -14,3 +14,5 @@ const db_con = mongoose.connect(`${dbcone}://${dbhost}/${dbname}`,
     });
 
 module.exports = db_con;
+
+//${dbcone}://${dbhost}/${dbname}
