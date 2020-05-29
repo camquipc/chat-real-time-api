@@ -7,7 +7,7 @@ module.exports = {
     index(req, res) {
 
 
-    	User.find({ online: true }).then( users => {
+    	User.find({ online: true }, { username:1 , avatar:1, online:1 }).then( users => {
 
     		res.status(200).json( users);
 
@@ -52,7 +52,7 @@ module.exports = {
 
     update(req , res) {
 
-        User.findByIdAndUpdate( req.params.id, {online:true} ,(err, user) => {
+        User.findByIdAndUpdate( req.params.id, {online:req.body.online} ,(err, user) => {
            
             if (err) {
 
