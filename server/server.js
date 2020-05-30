@@ -67,7 +67,9 @@ app.use("/api/", api);
 io.on("connection", async ( socket ) => {
 
 
-   const messages = await Chat.find().sort({createdAt:-1}).populate('userId');
+   //const messages = await Chat.find().sort({createdAt:-1}).populate('userId');
+
+   const messages = await Chat.find().populate('userId');
 
    const users = await User.find({ online: true }, { username:1 , avatar:1, online:1 });
     
