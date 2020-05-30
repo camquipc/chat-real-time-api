@@ -15,5 +15,5 @@ const db_con = mongoose.connect('mongodb://francisco:francisco1234@ds127982.mlab
 
 module.exports = db_con;
 
-//${dbcone}://${dbhost}/${dbname}
+
 
